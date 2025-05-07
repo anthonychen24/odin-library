@@ -178,9 +178,29 @@
 
 .book-pages {
     color: #666;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .book-read {
     color: royalblue;
+}
+
+.read-toggle-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: #2196F3;
+    color: white;
+}
+
+.read-toggle-btn:hover {
+    background-color: #2980b9;
+}
+
+.read-toggle-btn:active {
+    background-color: #407FC7;
 }

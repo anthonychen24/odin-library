@@ -7,7 +7,7 @@ const hidden = document.querySelector(".hidden");
 const library = document.querySelector(".library");
 
 addNewBook.addEventListener("click", () => {
-    if (hidden.style.display === "none") {
+    if (hidden.style.display === "none" || hidden.style.display === "") {
         hidden.style.display = "flex";
     } else {
         hidden.style.display = "none";
@@ -22,9 +22,9 @@ bookForm.addEventListener("submit", (e) => {
     displayBooks();
 }); 
 
-closeForm.addEventListener("click", () => {
-    hidden.style.display = "none";
-})
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+}
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -77,6 +77,18 @@ function displayBooks() {
             const targetId = e.target.getAttribute("data-id"); // Get the ID from button
             myLibrary = myLibrary.filter(book => book.id !== targetId);
             displayBooks();
+        });
+
+        const readToggleBtn = document.createElement("button");
+        readToggleBtn.textContent = "Toggle Read";
+        readToggleBtn.classList.add("read-toggle-btn");
+        readToggleBtn.setAttribute("data-id", book.id);
+
+        readToggleBtn.addEventListener("click", (e) => {
+            const targetId = e.target.getAttribute("data-id");
+            const book = myLibrary.find(bookEl => bookEl.id === targetId);
+            book.toggleRead();
+            displayBooks();
         })
 
         bookCard.appendChild(deleteBtn);
@@ -84,6 +96,7 @@ function displayBooks() {
         bookCard.appendChild(author);
         bookCard.appendChild(pages);
         bookCard.appendChild(read);
+        bookCard.appendChild(readToggleBtn);
 
         library.appendChild(bookCard);
     })
