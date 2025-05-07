@@ -5,12 +5,13 @@
 }
 
 .container {
-    padding: 50px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 .add-new-book {
@@ -19,7 +20,7 @@
     border-radius: 5px;
     background-color: #3498db;
     color: white;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
     border: none;
@@ -45,6 +46,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
     background-color: #F6F7F8;
     border: 1px solid #D6D9DC;
     border-radius: 10px;
@@ -104,14 +107,12 @@
     margin-bottom: 20px;
 }
 
-
 .library {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     padding: 1rem;
     max-width: 1000px;
-    /* Optional: constrain overall width */
     margin: 0 auto;
     grid-auto-rows: min-content;
 }
@@ -129,8 +130,57 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
     height: 100%;
+}
+
+.delete-btn, .close-form {
+    align-self: flex-end;
+    background-color: #ccc;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 20px;
+    padding: 0;
+}
+
+.delete-btn:hover {
+    background-color: #333;
+}
+
+.delete-btn:active {
+    background-color: #eee;
+}
+
+.book-title, .book-author, .book-pages {
+    overflow-wrap: break-word;
+}
+
+.book-title {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Roboto, 'sans-serif';
+}
+
+.book-author {
+    font-style: italic;
+    color: #444;
+}
+
+.book-pages {
+    color: #666;
+    font-size: 16px;
+}
+
+.book-read {
+    color: royalblue;
 }

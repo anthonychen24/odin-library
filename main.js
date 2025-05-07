@@ -1,12 +1,17 @@
-const myLibrary = [];
+let myLibrary = [];
 
 const addNewBook = document.querySelector(".add-new-book");
 const bookForm = document.querySelector(".book-form");
+const closeForm = document.querySelector(".close-form");
 const hidden = document.querySelector(".hidden");
 const library = document.querySelector(".library");
 
 addNewBook.addEventListener("click", () => {
-    hidden.style.display = "flex";    
+    if (hidden.style.display === "none") {
+        hidden.style.display = "flex";
+    } else {
+        hidden.style.display = "none";
+    }
 });
 
 bookForm.addEventListener("submit", (e) => {
@@ -16,6 +21,10 @@ bookForm.addEventListener("submit", (e) => {
     hidden.style.display = "none";    
     displayBooks();
 }); 
+
+closeForm.addEventListener("click", () => {
+    hidden.style.display = "none";
+})
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -45,16 +54,32 @@ function displayBooks() {
 
         let title = document.createElement("h3");
         title.textContent = book.title;
+        title.classList.add("book-title");
 
         let author = document.createElement("p");
         author.textContent = `Author: ${book.author}`;
+        author.classList.add("book-author");
 
         let pages = document.createElement("p");
         pages.textContent = `Pages: ${book.pages}`;
+        pages.classList.add("book-pages");
 
         let read = document.createElement("p");
         read.textContent = `Read: ${book.read ? "Yes" : "No"}`;
+        read.classList.add("book-read");
 
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "x";
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.setAttribute("data-id", book.id); // Set the ID as a data attribute
+
+        deleteBtn.addEventListener("click", (e) => {
+            const targetId = e.target.getAttribute("data-id"); // Get the ID from button
+            myLibrary = myLibrary.filter(book => book.id !== targetId);
+            displayBooks();
+        })
+
+        bookCard.appendChild(deleteBtn);
         bookCard.appendChild(title);
         bookCard.appendChild(author);
         bookCard.appendChild(pages);
